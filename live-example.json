@@ -1,0 +1,68 @@
+{
+  "contract_address": "0x2a3706e2D8dB38202180eb7ED22886E47423372d",
+  "network": "studionet",
+  "case_id": "0",
+  "claimant": "0x35a6C2D9a57A426AcCd859C59b770fdD37CF1c68",
+  "respondent": "0xB3213A02cb79b34f60125fe43908aF63b75f43A0",
+  "clauses": [
+    "The service provider must acknowledge every incident within 30 minutes of the incident being opened."
+  ],
+  "claimant_records": [
+    "Incident INC-17 was opened on 2026-09-28 at 10:00 UTC. This is the agreed incident opening timestamp."
+  ],
+  "respondent_records": [
+    "Provider incident log INC-17: first acknowledgement was on 2026-09-28 at 10:45 UTC. We confirm this is the correct first acknowledgement timestamp, and we accept the claimant's opening timestamp."
+  ],
+  "expected_outcome_before_execution": "BREACH_FOUND",
+  "transactions": [
+    {
+      "method": "open_case",
+      "hash": "0x543dcd23a58c45bf2c59abd7f2cafdee1e99b8e88fb5d6f7e50d92d414e8f561",
+      "status": "FINALIZED",
+      "execution_result": "SUCCESS"
+    },
+    {
+      "method": "accept_and_respond",
+      "hash": "0xcb6b7fe61f85f29d37180d59b017c9b1ce4050c4b67f55ce4d08159ca83d0f98",
+      "status": "FINALIZED",
+      "execution_result": "SUCCESS"
+    },
+    {
+      "method": "resolve",
+      "hash": "0x9dae5fcb6b4a6699f9fb23c49a783d2e3c72c27c5b325ffe7babab58bfe9fadd",
+      "status": "FINALIZED",
+      "execution_result": "SUCCESS"
+    }
+  ],
+  "actual_record": {
+    "case_id": "0",
+    "claimant": "0x35a6C2D9a57A426AcCd859C59b770fdD37CF1c68",
+    "claimant_records": [
+      "Incident INC-17 was opened on 2026-09-28 at 10:00 UTC. This is the agreed incident opening timestamp."
+    ],
+    "clauses": [
+      "The service provider must acknowledge every incident within 30 minutes of the incident being opened."
+    ],
+    "respondent": "0xB3213A02cb79b34f60125fe43908aF63b75f43A0",
+    "respondent_records": [
+      "Provider incident log INC-17: first acknowledgement was on 2026-09-28 at 10:45 UTC. We confirm this is the correct first acknowledgement timestamp, and we accept the claimant's opening timestamp."
+    ],
+    "ruling": {
+      "clauses": [
+        {
+          "decision": "BREACHED",
+          "evidence_ids": [
+            0,
+            1
+          ],
+          "index": 0,
+          "reason": "Incident opened at 10:00\u202fUTC (evidence\u202f0). Provider first acknowledged at 10:45\u202fUTC (evidence\u202f1), which is 45\u202fminutes after opening, exceeding the 30\u2011minute acknowledgement limit, so the obligation is violated."
+        }
+      ],
+      "outcome": "BREACH_FOUND"
+    },
+    "state": "FINALIZED"
+  },
+  "verified_at_utc": "2026-09-28T08:15:36.249105+00:00",
+  "result_kind": "REAL studionet execution; no mocks; leader_only=False"
+}
