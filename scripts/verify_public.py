@@ -23,8 +23,7 @@ def main():
     assert remote_source == SOURCE.read_bytes(), "Deployed source differs from repository"
     schema = rpc("gen_getContractSchema", [address])
     assert set(schema["methods"]) == {
-        "create_milestone", "submit_deliverable", "cancel_milestone", "adjudicate",
-        "get_milestone", "get_count"}
+        "open_case", "accept_and_respond", "cancel_case", "resolve", "get_case", "get_count"}
     client = create_client(chain=studionet, account=Account.create(), endpoint=RPC)
     receipt = client.get_transaction(manifest["transaction_hash"])
     assert receipt["status_name"] == "FINALIZED"

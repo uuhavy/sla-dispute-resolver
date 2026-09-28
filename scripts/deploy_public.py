@@ -16,7 +16,7 @@ from genlayer_py.chains import studionet
 
 ROOT = Path(__file__).resolve().parents[1]
 RPC = "https://studio.genlayer.com/api"
-SOURCE = ROOT / "contracts/milestone_acceptance_judge.py"
+SOURCE = ROOT / "contracts/sla_dispute_resolver.py"
 MANIFEST = ROOT / "deployment-studionet.json"
 
 
