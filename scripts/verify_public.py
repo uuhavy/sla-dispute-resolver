@@ -21,6 +21,10 @@ def main():
     assert chain_id == manifest["chain_id"] == 61999
     remote_source = base64.b64decode(rpc("gen_getContractCode", [address]), validate=True)
     assert remote_source == SOURCE.read_bytes(), "Deployed source differs from repository"
+    validation = json.loads((ROOT / "schema-validation.json").read_text(encoding="utf-8"))
+    assert validation["source_sha256"] == hashlib.sha256(remote_source).hexdigest()
+    assert validation["exit_code"] == 0 and validation["result"]["ok"] is True
+    assert validation["result"]["validate"]["contract"] == "SLADisputeResolver"
     schema = rpc("gen_getContractSchema", [address])
     assert set(schema["methods"]) == {
         "open_case", "accept_and_respond", "cancel_case", "resolve", "get_case", "get_count"}
@@ -37,6 +41,8 @@ def main():
         "contract_address": address, "transaction_hash": manifest["transaction_hash"],
         "deployment_status": receipt["status_name"], "deployment_execution": "SUCCESS",
         "deployed_source_matches_repository": True,
+        "official_linter_source_matches_deployment": True,
+        "official_linter_evidence": "schema-validation.json",
         "source_sha256": hashlib.sha256(remote_source).hexdigest(),
         "source_bytes": len(remote_source), "schema": schema,
         "read_call": {"method": "get_count", "args": [], "result": count},

@@ -70,7 +70,7 @@ class Dispute:
     ruling_json: str
 
 
-class Contract(gl.Contract):
+class SLADisputeResolver(gl.Contract):
     """SLADisputeResolver: bilateral frozen evidence and cited clause rulings."""
 
     cases: TreeMap[str, Dispute]

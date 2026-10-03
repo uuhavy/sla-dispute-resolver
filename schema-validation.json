@@ -1,0 +1,25 @@
+{
+  "checked_at_utc": "2026-10-03T01:12:51.681963+00:00",
+  "tool": "genvm-linter",
+  "tool_version": "0.11.0",
+  "genvm_version": "v0.2.16",
+  "source": "contracts/sla_dispute_resolver.py",
+  "source_sha256": "e66e83b6a527079fb63ee1f5caedc5c640b92902f6b156400c4818ff6f45a2c7",
+  "command": "genvm-lint check contracts/sla_dispute_resolver.py --json",
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "lint": {
+      "ok": true,
+      "passed": 3
+    },
+    "validate": {
+      "ok": true,
+      "contract": "SLADisputeResolver",
+      "methods": 6,
+      "view_methods": 2,
+      "write_methods": 4,
+      "ctor_params": 0
+    }
+  }
+}

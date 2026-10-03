@@ -7,6 +7,8 @@ recorded transaction rather than submitting a duplicate deployment.
 import argparse
 import hashlib
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import requests
@@ -34,6 +36,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--deploy", action="store_true")
     args = parser.parse_args()
+    subprocess.run([sys.executable, str(ROOT / "scripts/validate_submission.py")], check=True)
     code = SOURCE.read_bytes()
     assert code.isascii()
     assert code.splitlines()[0] == b"# v0.2.16"

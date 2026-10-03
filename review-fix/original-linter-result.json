@@ -1,0 +1,14 @@
+{
+  "checked_on": "2026-10-03",
+  "tool": "genvm-linter",
+  "tool_version": "0.11.0",
+  "genvm_version": "v0.2.16",
+  "source_commit": "90f799b",
+  "source_sha256": "99213fd07ed5806236592eb454bff6f57cea3b4574f5203f2cdadb6682313959",
+  "exit_code": 1,
+  "result": {
+    "ok": false,
+    "lint": {"ok": true, "passed": 3},
+    "validate": {"ok": false, "errors": [{"code": "E105", "msg": "No contract class found"}]}
+  }
+}
