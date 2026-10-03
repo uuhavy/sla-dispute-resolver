@@ -1,0 +1,104 @@
+{
+  "verified_at_utc": "2026-09-28T08:12:06.437552+00:00",
+  "network": "studionet",
+  "chain_id": 61999,
+  "rpc_url": "https://studio.genlayer.com/api",
+  "contract_address": "0x2a3706e2D8dB38202180eb7ED22886E47423372d",
+  "transaction_hash": "0x414a2ebb5e6e7d2daaff79e9dd547c33f10736ce88a76fde34f5a39ab7712b3c",
+  "deployment_status": "FINALIZED",
+  "deployment_execution": "SUCCESS",
+  "deployed_source_matches_repository": true,
+  "source_sha256": "99213fd07ed5806236592eb454bff6f57cea3b4574f5203f2cdadb6682313959",
+  "source_bytes": 9431,
+  "schema": {
+    "ctor": {
+      "params": [],
+      "kwparams": {}
+    },
+    "methods": {
+      "accept_and_respond": {
+        "params": [
+          [
+            "case_id",
+            "string"
+          ],
+          [
+            "response_records_json",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "null",
+        "payable": false
+      },
+      "cancel_case": {
+        "params": [
+          [
+            "case_id",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "null",
+        "payable": false
+      },
+      "get_case": {
+        "params": [
+          [
+            "case_id",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "string"
+      },
+      "get_count": {
+        "params": [],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "int"
+      },
+      "open_case": {
+        "params": [
+          [
+            "clauses_json",
+            "string"
+          ],
+          [
+            "incident_records_json",
+            "string"
+          ],
+          [
+            "respondent",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "string",
+        "payable": false
+      },
+      "resolve": {
+        "params": [
+          [
+            "case_id",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "string",
+        "payable": false
+      }
+    }
+  },
+  "read_call": {
+    "method": "get_count",
+    "args": [],
+    "result": 0
+  },
+  "authentication": "none; public RPC; no browser session or saved key"
+}

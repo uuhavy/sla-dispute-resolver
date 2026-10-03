@@ -1,5 +1,35 @@
 # SLADisputeResolver
 
+## Corrected resubmission: E105 fixed
+
+On 2026-10-03 we reproduced the reviewer finding with the unmodified official
+`genvm-linter==0.11.0`: the previous `class Contract(gl.Contract)` produced
+`E105: No contract class found`. The linter's class discovery skips a module
+symbol named `Contract`. The deployable declaration is now
+`class SLADisputeResolver(gl.Contract)`. This is the only contract source change:
+public API, storage fields and semantic consensus behavior are unchanged.
+
+The corrected source passes `genvm-lint check` with exit 0: contract
+SLADisputeResolver, six methods (two views, four writes), zero constructor
+parameters. [Machine-readable linter evidence](schema-validation.json) includes
+the SHA-256 of the exact source subsequently deployed. [Original failing
+result](review-fix/original-linter-result.json) is retained for comparison.
+Studio schema loading alone did not catch this linter discovery issue; both
+checks are now required. The deployment script runs the official linter first.
+
+The superseded address `0x2a3706e2D8dB38202180eb7ED22886E47423372d` is **not**
+the corrected submission. Its prior evidence is archived under
+[deployment-history/2026-09-28](deployment-history/2026-09-28).
+
+```sh
+python scripts/validate_submission.py
+```
+
+This runs the official CLI without modifying the linter and pins the downloaded
+GenVM bundle through `GENVM_VERSION=v0.2.16`. The contract retains its ASCII
+source, dependency hash and wildcard import. Only the deployable class name
+changes to satisfy the reviewer-required discovery check.
+
 Standalone GenLayer primitive for bilateral SLA incident adjudication. A claimant
 opens a case with frozen SLA clauses and incident records. A distinct respondent
 explicitly accepts those clauses and supplies their response records before
@@ -67,11 +97,11 @@ failed independent reassessment never silently finalize a ruling.
 ## Deployment
 
 - Network: **studionet**, chain ID **61999**.
-- Address: **`0x2a3706e2D8dB38202180eb7ED22886E47423372d`**.
-- [Explorer contract](https://explorer-studio.genlayer.com/address/0x2a3706e2D8dB38202180eb7ED22886E47423372d).
-- [Deployment transaction](https://explorer-studio.genlayer.com/tx/0x414a2ebb5e6e7d2daaff79e9dd547c33f10736ce88a76fde34f5a39ab7712b3c).
-- Deployment **FINALIZED / SUCCESS** on 2026-09-28.
-- Exact deployed source SHA-256: `99213fd07ed5806236592eb454bff6f57cea3b4574f5203f2cdadb6682313959`.
+- Address: **`0x9E223985B5773714696e7F9C8Bf486b0B15a3dD6`**.
+- [Explorer contract](https://explorer-studio.genlayer.com/address/0x9E223985B5773714696e7F9C8Bf486b0B15a3dD6).
+- [Deployment transaction](https://explorer-studio.genlayer.com/tx/0x18b98632c1ea611555260b70983801e0ce6dfdf9dd01ea46db1dcbf6a7076139).
+- Deployment **FINALIZED / SUCCESS** on 2026-10-03.
+- Exact deployed source SHA-256: `e66e83b6a527079fb63ee1f5caedc5c640b92902f6b156400c4818ff6f45a2c7`.
 - [Public verification record](deployment-verification.json).
 
 Run `python scripts/verify_public.py` to check public receipt, source byte equality,
@@ -81,7 +111,7 @@ successful verification at a specific time, not a guarantee of permanent retenti
 
 ### Worked example: real execution of a fictional incident
 
-On 2026-09-28, two distinct test wallets submitted case `"0"`. The incident is
+On 2026-10-03, two distinct test wallets submitted case `"0"`. The incident is
 illustrative, but the transactions, LLM execution, consensus and read result are
 real public studionet results, with no mocks and `leader_only=False`.
 
@@ -109,7 +139,7 @@ claimant's opening timestamp and the respondent's acknowledgement timestamp.
 All three calls are FINALIZED / SUCCESS.
 
 - [Full inputs, transaction hashes and actual read result](live-example.json).
-- [Actual resolve transaction](https://explorer-studio.genlayer.com/tx/0x9dae5fcb6b4a6699f9fb23c49a783d2e3c72c27c5b325ffe7babab58bfe9fadd).
+- [Actual resolve transaction](https://explorer-studio.genlayer.com/tx/0x4e8f8497f7e3e52604ef445edc6b5b03aca695efaa811eadf6bb26aaaac8579d).
 - `python scripts/live_example.py` verifies existing receipts and reads the
   finalized case without sending a transaction. `--send` is only for advancing
   an unfinished recorded example; it does not overwrite an existing case.
@@ -122,10 +152,11 @@ python -m venv .venv
 # Linux/macOS: source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
 python scripts/prepare_windows_tests.py
+python scripts/validate_submission.py
 gltest tests/ -q -p no:cacheprovider --tb=short
 ```
 
-**43 passed in 2.68s** on 2026-09-28 (Python 3.12, genlayer-test 0.29.2).
+**43 passed in 3.13s** on 2026-10-03 (Python 3.12, genlayer-test 0.29.2).
 SDK v0.2.16 is pinned in direct deployment fixtures and downloaded from the
 official release on first use. The Windows helper only fixes the runner's
 temporary-file cleanup; it does not change contract or validator semantics.

@@ -1,5 +1,5 @@
 {
-  "contract_address": "0x2a3706e2D8dB38202180eb7ED22886E47423372d",
+  "contract_address": "0x9E223985B5773714696e7F9C8Bf486b0B15a3dD6",
   "network": "studionet",
   "case_id": "0",
   "claimant": "0x35a6C2D9a57A426AcCd859C59b770fdD37CF1c68",
@@ -17,19 +17,19 @@
   "transactions": [
     {
       "method": "open_case",
-      "hash": "0x543dcd23a58c45bf2c59abd7f2cafdee1e99b8e88fb5d6f7e50d92d414e8f561",
+      "hash": "0x26b99208ec1db05b2840520fbff3fa54458b817c9e9b4c739f92be7df59707c4",
       "status": "FINALIZED",
       "execution_result": "SUCCESS"
     },
     {
       "method": "accept_and_respond",
-      "hash": "0xcb6b7fe61f85f29d37180d59b017c9b1ce4050c4b67f55ce4d08159ca83d0f98",
+      "hash": "0xc25750c92c654dd952ec0ffa382df8de9ff00c3d5649ec537b0a7400e15b7324",
       "status": "FINALIZED",
       "execution_result": "SUCCESS"
     },
     {
       "method": "resolve",
-      "hash": "0x9dae5fcb6b4a6699f9fb23c49a783d2e3c72c27c5b325ffe7babab58bfe9fadd",
+      "hash": "0x4e8f8497f7e3e52604ef445edc6b5b03aca695efaa811eadf6bb26aaaac8579d",
       "status": "FINALIZED",
       "execution_result": "SUCCESS"
     }
@@ -56,13 +56,13 @@
             1
           ],
           "index": 0,
-          "reason": "Incident opened at 10:00\u202fUTC (evidence\u202f0). Provider first acknowledged at 10:45\u202fUTC (evidence\u202f1), which is 45\u202fminutes after opening, exceeding the 30\u2011minute acknowledgement limit, so the obligation is violated."
+          "reason": "The incident was opened at 10:00\u202fUTC (evidence\u202f0) and the provider\u2019s first acknowledgement occurred at 10:45\u202fUTC (evidence\u202f1), a 45\u2011minute delay exceeding the 30\u2011minute requirement, so the obligation was not met."
         }
       ],
       "outcome": "BREACH_FOUND"
     },
     "state": "FINALIZED"
   },
-  "verified_at_utc": "2026-09-28T08:15:36.249105+00:00",
+  "verified_at_utc": "2026-10-03T01:19:57.297791+00:00",
   "result_kind": "REAL studionet execution; no mocks; leader_only=False"
 }
